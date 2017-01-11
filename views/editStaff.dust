@@ -1,0 +1,69 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+	
+	{<searchStaffforEdit}
+	<!-- start: Content -->
+	<div id="content" class="span10">
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i>
+				<a href="/"> Home</a> 
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-folder-open"></i>
+				<a href="#"> Manage Staff</a>
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-search"></i>
+				<a href="/editStaff"> Edit staff</a>
+			</li>
+		</ul>
+
+		<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon search"></i><span class="break"></span>Search Staff for Edit</h2>
+					</div>
+		<div class="box-content">
+			<form class="form-horizontal" method="post" action="searchStaffForEdit">
+				<fieldset>
+
+					<div class="control group">
+				        <label class="control-label" for="selectError2">Staff Name</label>
+				        <div class="controls">
+				        <select id="selectError2" name="staffs" data-rel="chosen" onchange="changeValueStaffOffice()">
+				          <option value="" disabled selected>Choose Staff</option>
+				          {#staff}
+				            <option value="{staff_id}" id = "{office_id}">{first_name} {middle_init} {last_name}</option>
+				          {/staff}
+				        </select>
+				      </div>
+				    </div>
+
+				  	<div class="control-group">
+				  		<div class="controls">
+				  			<p style="color:red;"><strong>{error}</strong></p>
+				  		</div>
+				  	</div>
+				  	<input type="hidden" name="editable" value="true"></input>
+					<button type="submit" class="btn btn-meduim btn-info" style ="margin-left: 300px">Search</button>
+					<button class="btn btn-meduim" style="margin-left:10px;"><a href="/">Cancel</a></button>
+				</fieldset>
+			</form>
+		</div>
+		</div>	
+	</div>
+	</div>
+	{/searchStaffforEdit}
+	
+</body>
+</html>
+

@@ -1,0 +1,292 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	
+</head>
+
+<body>
+
+	{<editProperStaff}
+			
+	<div id="content" class="span10">
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i>
+				<a href="/"> Home</a> 
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-folder-open"></i>
+				<a href="#"> Manage Staff</a>
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-plus"></i>
+				<a href="/editStaff"> Edit Staff</a>
+			</li>
+		</ul>
+
+
+		<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon plus-sign"></i><span class="break"></span>Edit Staff</h2>
+					</div>
+		<div class="box-content">
+			<form class="form-horizontal" method="post" action="updateStaffFinal">
+				<fieldset>
+					
+					{#staff}
+					<input type="hidden" id="staff_id_holder" name = "orig_staff_id" value="{staff_id}" />
+					<input type="hidden" id="office_holder" name = "orig_office_id" value="{office_id}" />
+					<input type="hidden" id="role_holder" name = "orig_role_type" value="{role}" />
+
+					<div class="control-group">
+						<label class="control-label" for="fname">First Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="fname" type="text" value="{first_name}" required>
+						</div>
+				  	</div>
+				  	<div class="control-group">
+						<label class="control-label" for="minit">Middle Initial</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" id="minit" name="minit" value="{middle_init}" type="text">
+						</div>
+				  	</div>
+				  	<div class="control-group">
+						<label class="control-label" for="lname">Last Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="lname" type="text" value="{last_name}" required>
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="username">Username</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="username" type="text" value="{staff_id}" required>
+						</div>
+				  	</div>
+
+					<div class="control-group">
+				        <label class="control-label" for="selectError1">Office Assigned</label>
+				        <div class="controls">
+					        <select id="selectError1" name="office_id" data-rel="chosen">
+					          <option value="" disabled>Choose Office</option>
+					          {#office}
+					            <option value="{office_id}">{office_name}</option>
+					          {/office}
+					        </select>
+					    </div>
+				    </div>
+
+				   <script type="text/javascript">
+				    	document.getElementById("selectError1").value = "{office_id}";
+				    </script>
+
+				    <div class="control-group">
+						<label class="control-label" for="selectError">Type</label>
+						<div class="controls">
+						  <select id="selectError" name="role" data-rel="chosen">
+							<option value="">No Designated Role</option>
+							<option value="Clerk">Clerk</option>
+							<option value="SPMO">SPMO</option>
+							<option value="Checker">Checker</option>
+							<option value="Office Head">Office Head</option>
+						  </select>
+						</div>
+				  	</div>
+
+				  	<script type="text/javascript">
+			    		document.getElementById("selectError").value = "{role}";
+				    </script>
+				    
+				    {/staff}
+
+				  	
+				  	{#checker_data}
+
+				  		<script type="text/javascript">
+					  	function necessaryDetails() {
+					  		document.getElementById("forPassword").hidden = true;
+				    		document.getElementById("forEmail").hidden = true;
+				    		document.getElementById("forType").hidden = true;
+					  		var x = document.getElementById("selectError").selectedIndex;
+					    	var y = document.getElementById("selectError").options;
+					    	if(y[x].value == "Checker") {
+					    		document.getElementById("forPassword").hidden = false;
+					    		document.getElementById("forEmail").hidden = false;
+					    		document.getElementById("forType").hidden = false;
+					    	}
+					  		if(y[x].value == "SPMO") {
+					  			document.getElementById("forPassword").hidden = false;
+					    		document.getElementById("forEmail").hidden = false;
+					  		}
+					  	}
+					  	</script>
+
+					  	<div class="control-group" id="forPassword" hidden>
+							<label class="control-label" for="password">Password</label>
+							<div class="controls">
+							 	<input class="input-xlarge focused" name="password" type="password" >
+							</div>
+					  	</div>
+
+					  	<div class="control-group" id="forEmail" hidden>
+							<label class="control-label" for="email">Email</label>
+							<div class="controls">
+							 	<input class="input-xlarge focused" name="email" type="email" value = "{email}">
+							</div>
+					  	</div>
+
+					  	<div class="control-group" id="forType" hidden>
+							<label class="control-label" for="selectError2">Checker Type</label>
+							<div class="controls">
+							  <select id="selectError2" name="types" data-rel="chosen">
+								<option>IT Equipments</option>
+								<option>Non-IT Equipment</option>
+								<option>Furnitures and Fixtures</option>
+								<option>Aircons</option>
+								<option>Lab Equipment</option>
+							  </select>
+							</div>
+					  	</div>
+
+					  	<script type="text/javascript">
+					    	document.getElementById("selectError2").value = {type};
+					    </script>
+					    
+				    {/checker_data}
+
+				    {#spmo_data}
+
+				    	<script type="text/javascript">
+					  	function necessaryDetails() {
+					  		document.getElementById("forPassword").hidden = true;
+				    		document.getElementById("forEmail").hidden = true;
+				    		document.getElementById("forType").hidden = true;
+					  		var x = document.getElementById("selectError").selectedIndex;
+					    	var y = document.getElementById("selectError").options;
+					    	if(y[x].value == "Checker") {
+					    		document.getElementById("forPassword").hidden = false;
+					    		document.getElementById("forEmail").hidden = false;
+					    		document.getElementById("forType").hidden = false;
+					    	}
+					  		if(y[x].value == "SPMO") {
+					  			document.getElementById("forPassword").hidden = false;
+					    		document.getElementById("forEmail").hidden = false;
+					  		}
+					  	}
+					  	</script>
+
+					    <div class="control-group" id="forPassword" hidden>
+							<label class="control-label" for="password">Password</label>
+							<div class="controls">
+							 	<input class="input-xlarge focused" name="password" type="password" >
+							</div>
+					  	</div>
+
+					  	<div class="control-group" id="forEmail" hidden>
+							<label class="control-label" for="email">Email</label>
+							<div class="controls">
+							 	<input class="input-xlarge focused" name="email" type="email" value = "{email}">
+							</div>
+					  	</div>
+
+				    {/spmo_data}
+
+				  	<br>
+					<button type="submit" class="btn btn-medium btn-info submits" style ="margin-left: 200px" id = "submits" >Save Staff</button>
+					<button class="btn btn-medium" style="margin-left:10px;" ><a href="/">Cancel</a></button>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+	</div>
+	</div>
+	{/editProperStaff}
+	
+</body>
+</html>
+
+
+
+function updateStaffFinal(req, res, next) {
+    console.log("updateStaffFinal");
+    var query, query2 = "", query3 = "";
+    if(req.body.orig_role_type != req.body.role){
+        if(req.body.orig_role_type == ""){
+            query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, ${role}) where staff_id = ${orig_staff_id}";
+            if(req.body.role == "SPMO")
+                query2 = "INSERT INTO spmo VALUES (${username}, crypt(${password}, gen_salt('md5')), ${email}, md5(${password}))";
+            if(req.body.role == "Checker")
+                query2 = "INSERT INTO checker VALUES (${username}, crypt(${password}, gen_salt('md5')), ${role}, md5(${password}), ${email})";
+            query2 = "";
+            query3 = "";
+        }
+        if(req.body.orig_role_type == "SPMO") {
+            query3 = "DELETE FROM spmo where username = ${orig_role_type}";
+            if(req.body.role == "") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, NULL) where staff_id = ${orig_staff_id}";
+                query2 = "";
+            } else if(req.body.role == "Checker") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, 'Checker') where staff_id = ${orig_staff_id}";              
+                query2 = "INSERT INTO checker VALUES (${username}, crypt(${password}, gen_salt('md5')), ${role}, md5(${password}), ${email})";
+            } else {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, ${role}) where staff_id = ${orig_staff_id}";
+                query2 = "";
+            }
+
+        }
+        if(req.body.orig_role_type == "Checker") {
+            query3 = "DELETE FROM checker where username = ${orig_role_type}";
+            if(req.body.role == "") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, NULL) where staff_id = ${orig_staff_id}";
+                query2 = "";
+            } else if(req.body.role == "SPMO") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, 'SPMO') where staff_id = ${orig_staff_id}";
+                query2 = "INSERT INTO spmo VALUES (${username}, crypt(${password}, gen_salt('md5')), ${email}, md5(${password}))";
+            } else {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, ${role}) where staff_id = ${orig_staff_id}";
+                query2 = "";
+            }
+        }
+        if(req.body.orig_role_type == "Office Head" || req.body.orig_role_type == "Clerk") {
+            query3 = "DELETE FROM clerk where username = ${orig_role_type}";
+            if(req.body.role == "") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, NULL) where staff_id = ${orig_staff_id}";
+                query2 = "";
+            } else if(req.body.role == "SPMO") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, 'SPMO') where staff_id = ${orig_staff_id}";
+                query2 = "INSERT INTO spmo VALUES (${username}, crypt(${password}, gen_salt('md5')), ${email}, md5(${password}))";
+            } else if(req.body.role == "Checker") {
+                query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name, role) = (${username}, ${fname}, ${minit}, ${lname}, 'Checker') where staff_id = ${orig_staff_id}";              
+                query2 = "INSERT INTO checker VALUES (${username}, crypt(${password}, gen_salt('md5')), ${role}, md5(${password}), ${email})";
+            }
+        }
+    } else {
+        query = "UPDATE staff SET (staff_id, first_name, middle_init, last_name) = (${username}, ${fname}, ${minit}, ${lname}) where staff_id = ${orig_staff_id}";
+        if(req.body.role == "SPMO")
+            query2 = "UPDATE spmo SET (password, email, md5) = (crypt(${password}, gen_salt('md5')), ${email}, md5(${password}))";
+        if(req.body.role == "Checker") 
+            query2 = "UPDATE checker SET (password, email, md5, type) = (crypt(${password}, gen_salt('md5')), ${role}, md5(${password}), ${email}, ${role})";
+    }
+    db.task(function (t) {
+        return t.batch([
+            t.none(query3, req.body),
+            t.none(query, req.body),
+            t.none(query2, req.body),
+            t.none("INSERT INTO transaction_log (staff_id,transaction_details) values ($1,'updated a staff's details", [req.session.user])
+        ]);
+    })
+    .then(function (data) {
+        res.status(200)
+            .redirect('/dashboard');
+    })
+    .catch(function(err) {
+        console.log("[UPDATE-FINAL-EQUIP] " + err);
+        return next(err);
+    });
+}

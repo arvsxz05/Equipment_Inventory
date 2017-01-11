@@ -1,0 +1,151 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	
+</head>
+
+<body>
+
+	{<addStaff}
+			
+	<div id="content" class="span10">
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i>
+				<a href="/"> Home</a> 
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-folder-open"></i>
+				<a href="#"> Manage Staff</a>
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-plus"></i>
+				<a href="/addStaff"> Add Staff</a>
+			</li>
+		</ul>
+
+
+		<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon plus-sign"></i><span class="break"></span>Add Staff</h2>
+					</div>
+		<div class="box-content">
+			<form class="form-horizontal" method="post" action="confirmaddStaff">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="fname">First Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="fname" type="text" required>
+						</div>
+				  	</div>
+				  	<div class="control-group">
+						<label class="control-label" for="minit">Middle Initial</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" id="minit" name="minit" type="text">
+						</div>
+				  	</div>
+				  	<div class="control-group">
+						<label class="control-label" for="lname">Last Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="lname" type="text" required>
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="username">Username</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="username" type="text" required>
+						</div>
+				  	</div>
+
+					<div class="control-group">
+				        <label class="control-label" for="selectError1">Office Assigned</label>
+				        <div class="controls">
+					        <select id="selectError1" name="office_id" data-rel="chosen" onchange="changeValueStaffOffice()">
+					          <option value="" disabled selected>Choose Office</option>
+					          {#office}
+					            <option value="{office_id}">{office_name}</option>
+					          {/office}
+					        </select>
+					    </div>
+				    </div>
+
+				    <div class="control-group">
+						<label class="control-label" for="selectError">Type</label>
+						<div class="controls">
+						  <select id="selectError" name="role" data-rel="chosen" onchange = "necessaryDetails()">
+							<option>No Designated Role</option>
+							<option>Clerk</option>
+							<option>SPMO</option>
+							<option>Checker</option>
+							<option>Office Head</option>
+						  </select>
+						</div>
+				  	</div>
+
+				  	<script type="text/javascript">
+
+				  	function necessaryDetails() {
+				  		document.getElementById("forPassword").hidden = true;
+			    		document.getElementById("forEmail").hidden = true;
+			    		document.getElementById("forType").hidden = true;
+				  		var x = document.getElementById("selectError").selectedIndex;
+				    	var y = document.getElementById("selectError").options;
+				    	if(y[x].value == "Checker") {
+				    		document.getElementById("forPassword").hidden = false;
+				    		document.getElementById("forEmail").hidden = false;
+				    		document.getElementById("forType").hidden = false;
+				    	}
+				  		if(y[x].value == "SPMO") {
+				  			document.getElementById("forPassword").hidden = false;
+				    		document.getElementById("forEmail").hidden = false;
+				  		}
+				  	}
+				  	</script>
+
+				  	<div class="control-group" id="forPassword" hidden>
+						<label class="control-label" for="password">Password</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="password" type="password" >
+						</div>
+				  	</div>
+
+				  	<div class="control-group" id="forEmail" hidden>
+						<label class="control-label" for="email">Email</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="email" type="email" >
+						</div>
+				  	</div>
+
+				  	<div class="control-group" id="forType" hidden>
+						<label class="control-label" for="selectError2">Checker Type</label>
+						<div class="controls">
+						  <select id="selectError2" name="types" data-rel="chosen">
+							<option>IT Equipments</option>
+							<option>Non-IT Equipment</option>
+							<option>Furnitures and Fixtures</option>
+							<option>Aircons</option>
+							<option>Lab Equipment</option>
+						  </select>
+						</div>
+				  	</div>
+
+				  	<br>
+					<button type="submit" class="btn btn-medium btn-info submits" style ="margin-left: 200px" id = "submits" >Save Staff</button>
+					<button class="btn btn-medium" style="margin-left:10px;" ><a href="/">Cancel</a></button>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+	</div>
+	</div>
+	{/addStaff}
+	
+</body>
+</html>

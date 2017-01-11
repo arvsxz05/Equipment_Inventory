@@ -1,0 +1,130 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script type="text/javascript">
+		function validateForm() {
+			var x = document.getElementById("prompt").innerHTML;
+			if (x === "Password does not match!") {
+				alert("Password does not match!");
+				return false;
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	{<add}
+			<!-- start: Content -->
+	<div id="content" class="span10">
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home"></i>
+				<a href="/"> Home</a> 
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-folder-open"></i>
+				<a href="#"> Manage Office</a>
+				<i class="icon-angle-right"></i>
+			</li>
+			<li>
+				<i class="icon-plus"></i>
+				<a href="/addequipment"> Add Office</a>
+			</li>
+		</ul>
+
+
+		<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon plus-sign"></i><span class="break"></span>Add Office</h2>
+					</div>
+		<div class="box-content">
+			<form class="form-horizontal" method="post" action="confirmaddOffice" onsubmit = "return validateForm()">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="office_name">Office Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="office_name" type="text" required>
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label">Cluster</label>
+						<div class="controls">
+						  <select name="cluster" data-rel="chosen">
+							<option> </option>
+							<option>Administration</option>
+							<option>Management</option>
+							<option>Arts and Humanities</option>
+							<option>Social Sciences</option>
+							<option>Sciences</option>
+						  </select>
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="email">E-mail Address</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="email" type="email" required>
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="selectError1">Password</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="password" type="password" id="selectError1" onchange="changePass()">
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="selectError2">Re-type Password</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="password" type="password" id="selectError2" onchange="changePass()">
+						</div>
+				  	</div>
+
+				  	<div class="control-group">
+				    	<div class="controls">
+				    		<b><p style="color: red" id="prompt"></p><b>
+				    		<b><p style="color: green" id="success"></p><b>
+				    	</div>
+				    </div>
+
+				  	<div class="control-group">
+						<label class="control-label" for="short_office_name">Shotened Office Name</label>
+						<div class="controls">
+						 	<input class="input-xlarge focused" name="short_office_name" type="text" required>
+						</div>
+				  	</div>
+
+				    <script type="text/javascript">
+				    	function changePass() {
+					    	var x = document.getElementById("selectError2").value;
+							var y = document.getElementById("selectError1").value;
+					    	if(x != y){
+					    		document.getElementById("prompt").innerHTML = "Password does not match!";
+					    		document.getElementById("success").innerHTML = " ";
+					    	} else {
+					    		document.getElementById("prompt").innerHTML = " ";
+					    		document.getElementById("success").innerHTML = "Passwords match!";
+					    	}
+					    }
+				    </script>
+
+				  	<br>
+					<button type="submit" class="btn btn-medium btn-info submits" style ="margin-left: 200px" id = "submits" >Add Office</button>
+					<button class="btn btn-medium" style="margin-left:10px;" ><a href="/">Cancel</a></button>
+				</fieldset>
+			</form>
+		</div>
+		</div>
+	</div>
+	</div>
+	{/add}
+	
+</body>
+</html>

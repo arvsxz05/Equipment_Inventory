@@ -1,0 +1,67 @@
+{>"header"/}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Dashboard </title>
+
+	<style type="text/css">
+	body { background: url(img/bg-login.jpg); 
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+		background-size: cover;
+		margin: 0 auto;
+	}
+	</style>
+</head>
+
+<body>
+	
+	{<index}
+	<!-- start: Content -->
+	<div id="content" class="span12">
+	
+	<ul class="breadcrumb">
+		<li>
+			<i class="icon-home"></i>
+			<a href="/"> Home</a> 
+		</li>
+	</ul>
+
+	<div class="row-fluid">	
+		<div class="box gray span12">
+			<div class="box-header">
+				<h2><i class="halflings-icon hand-top"></i><span class="break"></span>Quick Buttons</h2>
+			</div>
+			<div class="box-content">
+				<a class="quick-button span2" href="/viewoffices">
+					<i class="icon-home"></i>
+					<p>Offices</p>
+					<!-- <span class="notification blue">50</span> -->
+				</a>
+				<a class="quick-button span2" href="/calendar">
+					<i  class="icon-calendar"></i>
+					<p>Calendar</p>
+				</a>
+				<a class="quick-button span2" href="/searchforequipment">
+					<i class="icon-search"></i>
+					<p>Search</p>
+				</a>
+				<a class="quick-button span2">
+					<i class="icon-envelope"></i>
+					<p>Disposal Requests</p>
+					<!-- <span class="notification blue">20</span> -->
+				</a>
+				<div class="clearfix"></div>
+			</div>	
+		</div>					
+	</div><!--/row-->
+
+	
+
+	</div>
+	{/index}
+	
+</body>
+</html>
